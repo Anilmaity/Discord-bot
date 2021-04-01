@@ -1,16 +1,19 @@
-# This is a sample Python script.
+#https://discordpy.readthedocs.io/en/latest/quickstart.html
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+import discord
 
+client = discord.Client()
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+@client.event
+async def on_ready():
+    print('We have logged in as {0.user}'.format(client))
 
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    if message.content.startswith('$hello'):
+        await message.channel.send('Hello!')
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+client.run('your token here')
