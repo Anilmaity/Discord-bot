@@ -1,19 +1,44 @@
-#https://discordpy.readthedocs.io/en/latest/quickstart.html
+# https://discordpy.readthedocs.io/en/latest/quickstart.html
+from Crypto import ltp
+import discord as dis
+from discord.ext import commands
 
-import discord
 
-client = discord.Client()
+bot = commands.Bot(command_prefix='$')
 
-@client.event
-async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+print('bot is on and running')
 
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
 
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
+@bot.command()
+async def hello(ctx):
+    await ctx.send('Hello!')
 
-client.run('your token here')
+
+@bot.command()
+async def test(ctx):
+    await ctx.send('ok good till now')
+
+
+@bot.command()
+async def meme(ctx):
+    await ctx.send('pls meme')
+
+
+@bot.command()
+async def add(ctx, a: int, b: int):
+    await ctx.send(a + b)
+
+
+@bot.command()
+async def who(ctx):
+    ctx.message.channel.typing()
+    await ctx.send(ctx.message.author.name)
+
+@bot.command()
+async def cryptoprice(ctx, arg):
+    price = ltp(arg)
+    await ctx.send(price)
+
+
+
+bot.run('ODI3MTU3OTM2MTU3NDkxMjQw.YGW82w.FDD8fkbjaHzbpfmO5W6EdQCVBvU')
