@@ -1,6 +1,6 @@
 # https://discordpy.readthedocs.io/en/latest/quickstart.html
 from discord.ext import commands
-
+from functions.Timetable import lecturenow
 from Crypto import ltp
 
 bot = commands.Bot(command_prefix='$')
@@ -54,5 +54,8 @@ async def cryptoprice(ctx, arg):
     price = ltp(arg)
     await ctx.send(price)
 
+@bot.command()
+async def lec_now(ctx, enrol):
+    await ctx.send(lecturenow(enrol))
 
-#bot.run('ODI3MTU3OTM2MTU3NDkxMjQw.YGW82w.NGWYzUFDr6VKtTprNBbpsIgBtzA')
+bot.run('ODI3MTU3OTM2MTU3NDkxMjQw.YGW82w.oGAP_prDffYtudAntFbBaw1Pfgw')
