@@ -1,8 +1,7 @@
 # https://discordpy.readthedocs.io/en/latest/quickstart.html
-from Crypto import ltp
-import discord as dis
 from discord.ext import commands
 
+from Crypto import ltp
 
 bot = commands.Bot(command_prefix='$')
 
@@ -30,9 +29,25 @@ async def add(ctx, a: int, b: int):
 
 
 @bot.command()
+async def sub(ctx, a: int, b: int):
+    await ctx.send(a - b)
+
+
+@bot.command()
+async def multiply(ctx, a: int, b: int):
+    await ctx.send(a * b)
+
+
+@bot.command()
+async def div(ctx, a: int, b: int):
+    await ctx.send(a / b)
+
+
+@bot.command()
 async def who(ctx):
     ctx.message.channel.typing()
     await ctx.send(ctx.message.author.name)
+
 
 @bot.command()
 async def cryptoprice(ctx, arg):
@@ -40,5 +55,4 @@ async def cryptoprice(ctx, arg):
     await ctx.send(price)
 
 
-
-bot.run('ODI3MTU3OTM2MTU3NDkxMjQw.YGW82w.FDD8fkbjaHzbpfmO5W6EdQCVBvU')
+#bot.run('ODI3MTU3OTM2MTU3NDkxMjQw.YGW82w.NGWYzUFDr6VKtTprNBbpsIgBtzA')
